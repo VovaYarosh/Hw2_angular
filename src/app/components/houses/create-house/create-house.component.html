@@ -1,0 +1,36 @@
+<div class="form">
+
+  <form (ngSubmit)="createNewHouse(newHouseForm)" #newHouseForm="ngForm">
+    <input type="text" name="city" placeholder="city"
+           #cityValue="ngModel"
+           [(ngModel)]="newHouse.city"
+           [ngStyle]="{backgroundColor: cityValue.invalid && cityValue.dirty ? 'red' : 'white'}"
+           required>
+    <br>
+
+    <input type="text" name="street" placeholder="On which street it located?"
+           #streetValue="ngModel"
+           [(ngModel)]="newHouse.street"
+           [ngStyle]="{backgroundColor: streetValue.invalid && streetValue.dirty ? 'red' : 'white'}"
+           required>
+    <br>
+
+    <input type="text" name="roomCount" placeholder="How much rooms?"
+           #roomCountValue="ngModel"
+           [(ngModel)]="newHouse.room_count"
+           [ngStyle]="{backgroundColor: roomCountValue.invalid && roomCountValue.dirty ? 'red' : 'white'}"
+           required>
+    <br>
+
+    <input type="text" name="price" placeholder="write a price"
+           #priceValue="ngModel"
+           [(ngModel)]="newHouse.price"
+           [ngStyle]="{backgroundColor: priceValue.invalid && priceValue.dirty ? 'red' : 'white'}"
+           required>
+    <br>
+    <br>
+
+    <button [disabled]="newHouseForm.invalid">create</button>
+  </form>
+
+</div>

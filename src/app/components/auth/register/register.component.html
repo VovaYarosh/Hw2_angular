@@ -1,0 +1,22 @@
+<div class="main">
+<div class="title">
+  <h4>Register</h4>
+</div>
+<form #register="ngForm" (ngSubmit)="registerUser(register)">
+  <input type="text"
+         placeholder="  email"
+         name="email"
+         ngModel
+         required>
+  <br>
+  <input type="text"
+         placeholder="  password"
+         name="password"
+         ngModel
+         required>
+  <br>
+  <input type="submit" value="Submit">
+</form>
+</div>
+
+<h4>{{message}}</h4>

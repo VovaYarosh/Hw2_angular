@@ -1,134 +1,76 @@
 <div>
-  <button (click)="register()">Register</button>
-  <button (click)="login()">Sign In</button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" (click)="displayHouses()" href="#">Houses</a>
 
-  <input type="text" #inp>
-  <button (click)="resOfSearch(inp.value)">search</button>
-
-  <button class="houses" (click)="displayHouses()">SHOW HOUSES</button>
-  <button class="houses" (click)="postNewHouse()">CREATE NEW HOUSE</button>
-
-</div>
-
-{{result | json}}
-
-<br>
-
-<div class="form" *ngIf="log" >
-
-  <form (ngSubmit)="logUser()" #logForm="ngForm">
-    <input type="text" name="nickname" placeholder="enter your nickname"
-           [(ngModel)]="signIn.nickname"
-           required>
-    <br>
-    <input type="password" name="password" placeholder="enter your password"
-           [(ngModel)]="signIn.password"
-           required>
-    <br>
-        <div *ngIf="logUp">{{logUp}}</div>
-        <button>Sign IN</button>
-  </form>
-
-</div>
-
-
-
-<div class="form" *ngIf="reg" >
-
-  <form (ngSubmit)="regUser()" #regForm="ngForm">
-    <input type="text" name="name" placeholder="Name"
-           #nameValue="ngModel"
-           [(ngModel)]="newUser.nickname"
-           [ngStyle]="{backgroundColor: nameValue.invalid && nameValue.dirty ? 'red' : 'white'}"
-           required>
-    <br>
-
-    <input type="text" name="email" placeholder="e-mail"
-           #emailValue="ngModel"
-           [(ngModel)]="newUser.email"
-           [ngStyle]="{backgroundColor: emailValue.invalid && emailValue.dirty ? 'red' : 'white'}"
-           required
-           email>
-    <br>
-
-    <input type="text" name="password" placeholder="password"
-           #passValue="ngModel"
-           [(ngModel)]="newUser.password"
-           [ngStyle]="{backgroundColor: passValue.invalid && passValue.dirty ? 'red' : 'white'}"
-           required
-           minlength = "7">
-    <br>
-    <br>
-
-    <button [disabled]="regForm.invalid">register</button>
-  </form>
-
-</div>
-
-
-
-<div class="form" *ngIf="shownHouses">
-    <div *ngFor="let house of houses">
-
-    <span [ngClass]="house.owner.is_blocked ? 'for_blocked' : 'for_unblocked'" *ngIf="shortInfo">
-        City: {{house.city}}<br>
-        Price: {{house.price}}<br>
-    </span>
-
-    <span *ngIf="shownHouseId === house.id && fullInfo">
-      Street: {{house.street}}
-      <br>
-      Owner: {{house.owner.nickname}}, {{house.owner.email}}
-      <br>
-      rooms: {{house.room_count}}
-      <br>
-      id: {{house.id}}
-    </span>
-
-    <button [disabled]="house.owner.is_blocked" (click)="showFullInfo(house.id)">Show full info</button>
-
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+        <a class="nav-link" (click)="showLogin()" href="#">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="showRegister()" href="#">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="showForm()" href="#">Create house</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
+  </nav>
+  <!--<div>-->
+    <!--<button (click)="register()">Register</button>-->
+<!---->
+    <!--<input type="text" #inp>-->
+    <!--<button (click)="resOfSearch(inp.value)">search</button>-->
+<!---->
+    <!--<button class="houses" (click)="postNewHouse()">CREATE NEW HOUSE</button>-->
+
+<!--</div>-->
+
+<!--<form (ngSubmit)="regUser()" #regForm="ngForm">-->
+  <!--<input type="text" name="name" placeholder="Name"-->
+         <!--#nameValue="ngModel"-->
+         <!--[(ngModel)]="newUser.nickname"-->
+         <!--[ngStyle]="{backgroundColor: nameValue.invalid && nameValue.dirty ? 'red' : 'white'}"-->
+           <!--required>-->
+    <!--<br>-->
+<!---->
+    <!--<input type="text" name="email" placeholder="e-mail"-->
+           <!--#emailValue="ngModel"-->
+           <!--[(ngModel)]="newUser.email"-->
+           <!--[ngStyle]="{backgroundColor: emailValue.invalid && emailValue.dirty ? 'red' : 'white'}"-->
+           <!--required-->
+           <!--email>-->
+    <!--<br>-->
+<!---->
+    <!--<input type="text" name="password" placeholder="password"-->
+           <!--#passValue="ngModel"-->
+           <!--[(ngModel)]="newUser.password"-->
+           <!--[ngStyle]="{backgroundColor: passValue.invalid && passValue.dirty ? 'red' : 'white'}"-->
+           <!--required-->
+           <!--minlength="7">-->
+    <!--<br>-->
+    <!--<br>-->
+<!---->
+    <!--<button [disabled]="regForm.invalid">register</button>-->
+  <!--</form>-->
+<!---->
+<!--</div>-->
+<!---->
+<!---->
+
+<!---->
+
+
 </div>
 
-
-<div class="form" *ngIf="CreatehouseForm" >
-
-  <form (ngSubmit)="createNewHouse()" #newHouseForm="ngForm">
-    <input type="text" name="city" placeholder="city"
-           #cityValue="ngModel"
-           [(ngModel)]="newHouse.city"
-           [ngStyle]="{backgroundColor: cityValue.invalid && cityValue.dirty ? 'red' : 'white'}"
-           required>
-    <br>
-
-    <input type="text" name="street" placeholder="On which street it located?"
-           #streetValue="ngModel"
-           [(ngModel)]="newHouse.street"
-           [ngStyle]="{backgroundColor: streetValue.invalid && streetValue.dirty ? 'red' : 'white'}"
-           required>
-    <br>
-
-    <input type="text" name="roomCount" placeholder="How much rooms?"
-           #roomCountValue="ngModel"
-           [(ngModel)]="newHouse.room_count"
-           [ngStyle]="{backgroundColor: roomCountValue.invalid && roomCountValue.dirty ? 'red' : 'white'}"
-           required>
-    <br>
-
-    <input type="text" name="price" placeholder="write a price"
-           #priceValue="ngModel"
-           [(ngModel)]="newHouse.price"
-           [ngStyle]="{backgroundColor: priceValue.invalid && priceValue.dirty ? 'red' : 'white'}"
-           required>
-    <br>
-    <br>
-
-    <button [disabled]="newHouseForm.invalid">create</button>
-  </form>
-
-</div>
-
-
-
-
-
+<app-login *ngIf="isLogin"></app-login>
+<app-register *ngIf="isRegister"></app-register>
+<app-houses *ngIf="shownHouses"></app-houses>
+<app-create-house *ngIf="addHouse"></app-create-house>

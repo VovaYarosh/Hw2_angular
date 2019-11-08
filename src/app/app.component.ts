@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {HousesComponent} from "./components/houses/houses.component";
 
 @Component({
   selector: 'app-root',
@@ -12,8 +13,10 @@ export class AppComponent implements OnInit {
   shownHouses = false;
   addHouse = false;
   users: [] = [];
+  result: any = '';
 
   constructor(
+    private houses: HousesComponent
   ) {}
 
   ngOnInit() {
@@ -45,20 +48,15 @@ export class AppComponent implements OnInit {
     this.shownHouses = false;
   }
 
+  houseSearch(resOfSearch) {
+    this.resOfSearch(resOfSearch);
+  }
 
-  //search engine
-  // resOfSearch(val){
-  //   [this.result] =  this.houses.filter(house => house.city = val)
-  // }
-  //
-  // regUser(){
-  //   this.users.push(this.newUser);
-  //   console.log('registered')
-  // }
-  //
-  // postNewHouse() {
-  //   this.CreatehouseForm = !this.CreatehouseForm;
-  // }
+  resOfSearch(val){
+    [this.result] =  this.houses.houses.filter(house => house.city = val)
+  }
+
+
 
 }
 

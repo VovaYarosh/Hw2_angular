@@ -4,6 +4,7 @@
     <span [ngClass]="house.owner ? 'for_blocked' : 'for_unblocked'">
         City: {{house.city}}<br>
         Price: {{house.price}}<br>
+      Price USD: {{house.price | currency}}
     </span>
 
     <span *ngIf="shownHouseId === house.id && fullInfo">

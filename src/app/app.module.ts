@@ -11,6 +11,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { CreateHouseComponent } from './components/houses/create-house/create-house.component';
 import { HouseSearchComponent } from './components/house-search/house-search.component';
+import { CurrencyPipe } from './pipe/currency.pipe';
 
 @NgModule({
   declarations: [
@@ -21,11 +22,13 @@ import { HouseSearchComponent } from './components/house-search/house-search.com
     LoginComponent,
     RegisterComponent,
     CreateHouseComponent,
-    HouseSearchComponent
+    HouseSearchComponent,
+    CurrencyPipe
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
